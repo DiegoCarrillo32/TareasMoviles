@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="countries">
+        <item>Costa Rica</item>
+        <item>Colombia</item>
+        <item>San Salvador</item>
+        <item>Estados Unidos</item>
+        <item>Republica Dominicana</item>
+    </array>
+</resources>
