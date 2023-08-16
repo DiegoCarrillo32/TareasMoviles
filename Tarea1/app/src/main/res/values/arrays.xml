@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="operators">
+        <item>+</item>
+        <item>-</item>
+        <item>x</item>
+        <item>/</item>
+
+    </array>
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Jangomomo</string>
+    <string name="ingrese_el_segundo_valor">Ingrese el segundo valor</string>
+    <string name="ingrese_el_primer_valor">Ingrese el primer valor</string>
+    <string name="operar">Operar</string>
+    <string name="result">RESULT</string>
+</resources>
