@@ -2,12 +2,15 @@ package com.kosti.tarea3
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CalendarView
@@ -27,16 +30,23 @@ import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
     lateinit var listView: ListView
-    var eventos: MutableList<String> = mutableListOf()
+    var eventos: MutableList<Event> = mutableListOf()
+    var nombreEventos: MutableList<String> = mutableListOf()
     lateinit var adapter: ArrayAdapter<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         listView = findViewById(R.id.listView)
-        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, eventos)
+        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, nombreEventos )
 
         listView.adapter =adapter
+        listView.onItemClickListener =
+            AdapterView.OnItemClickListener { p0, p1, p2, p3 ->
+                val intent = Intent(this@MainActivity, DetailedEvent::class.java)
+                intent.putExtra("event", Gson().toJson(eventos[p2]))
+                startActivity(intent)
+            }
         val toolbar: Toolbar = findViewById(R.id.toolbar)
 
         setSupportActionBar(toolbar)
@@ -46,7 +56,9 @@ class MainActivity : AppCompatActivity() {
         var eventList = getEvents()
         eventos.clear()
         for(event in eventList.eventList){
-            eventos.add(event.name)
+            Toast.makeText(this, "Nombre ${event.name}", Toast.LENGTH_SHORT).show()
+            eventos.add(event)
+            nombreEventos.add(event.name)
         }
         adapter.notifyDataSetChanged()
         //loadEvents()
@@ -207,7 +219,8 @@ class MainActivity : AppCompatActivity() {
                 outputStreamWriter.close()
                 eventos.clear()
                 for (event in eventList.eventList){
-                    eventos.add(event.name)
+                    eventos.add(event)
+                    nombreEventos.add(event.name)
                 }
                 adapter.notifyDataSetChanged()
                 Toast.makeText(this, "Guardado exitosamente en true", Toast.LENGTH_SHORT).show()
@@ -227,7 +240,8 @@ class MainActivity : AppCompatActivity() {
 
                 eventos.clear()
                 for (event in eventList.eventList){
-                    eventos.add(event.name)
+                    eventos.add(event)
+                    nombreEventos.add(event.name)
                 }
 
                 adapter.notifyDataSetChanged()
