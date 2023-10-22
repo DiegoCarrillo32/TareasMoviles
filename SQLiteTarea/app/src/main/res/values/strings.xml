@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SQLiteTarea</string>
+    <string name="lista_de_productos">Lista de productos</string>
+</resources>
